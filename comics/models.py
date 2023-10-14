@@ -3,6 +3,7 @@ import uuid
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
+from django_project.settings import MEDIA_URL
 
 
 
@@ -10,12 +11,13 @@ def generate_comic_path(instance, filename):
     clean_filename = os.path.basename(filename)
     if isinstance(instance, Comic):
         comic_id = str(instance.id)
+        sub_folder = "cover"
 
-        return os.path.join(comic_id, "cover", clean_filename)
     else:
         comic_id = str(instance.chapter.comic.id)
+        sub_folder = str(instance.chapter)
 
-        return os.path.join(comic_id, str(instance.chapter), clean_filename)
+    return os.path.join(MEDIA_URL, comic_id, sub_folder, clean_filename)
     
 
 
