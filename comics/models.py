@@ -54,7 +54,7 @@ class Comic(models.Model):
     def get_static_cover(self):
         if self.cover:
             filename = os.path.basename(self.cover.url)
-            static_image_dir = "/images/"
+            static_image_dir = "images/"
             return os.path.join(static_image_dir, filename)
         else:
             return ""
