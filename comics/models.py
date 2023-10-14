@@ -1,5 +1,4 @@
 import os
-import pathlib
 import uuid
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -8,7 +7,7 @@ from django.urls import reverse
 
 
 def generate_comic_path(instance, filename):
-    clean_filename = f"{pathlib.Path(filename).stem}.{pathlib.Path(filename).suffix}"
+    clean_filename = os.path.basename(filename)
     if isinstance(instance, Comic):
         comic_id = str(instance.id)
 
