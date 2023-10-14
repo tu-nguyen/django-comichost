@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block title %}{{ comic.title }}{% endblock title %}
 
@@ -6,9 +7,7 @@
   <div class="comic-detail">
     {% if comic.cover %}
       <!-- <img class="comiccover" src="{{ comic.cover.url }}" alt="{{ comic.title }}"> -->
-      {% with comic.get_static_cover as image_static %}
-      <img class="comiccover" src="{% static image_static %}" alt="{{ comic.title }}">
-      {% endwith %}
+      <img class="comiccover" src="{% static '' %}{{ comic.get_static_cover }}" alt="{{ comic.title }}">
     {% endif %}
     <h2><a href="{{ comic.get_chapters_absolute_url }}">{{ comic.title }}</a></h2>
     <p>Author: {{ comic.author }}</p>

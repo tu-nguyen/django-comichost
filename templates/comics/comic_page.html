@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block title %}Chapter {{ chapter }}{% endblock title %}
 
@@ -9,9 +10,8 @@
             {% for page in page_list %}
             <li>
                 <!-- <img class="pages" src="{{ page.img.url }}" alt="{{ page.page }}"> -->
-                {% with page.get_static_page as image_static %}
-                <img class="pages" src="{% static image_static %}" alt="{{ page.page }}">
-                {% endwith %}
+                <img class="pages" src="{% static '' %}{{ page.get_static_page }}" alt="{{ page.page }}">
+
             </li>
             {% endfor %}
         </ul>

@@ -54,9 +54,12 @@ class Comic(models.Model):
         return reverse("chapter_list", args=[str(self.id)])
     
     def get_static_cover(self):
-        filename = os.path.basename(self.cover.url)
-        static_image_dir = "images/"
-        return os.path.join(static_image_dir, filename)
+        if self.cover:
+            filename = os.path.basename(self.cover.url)
+            static_image_dir = "images/"
+            return os.path.join(static_image_dir, filename)
+        else:
+            return ""
     
     
 

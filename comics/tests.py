@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
 
@@ -20,9 +21,12 @@ class ComicTests(TestCase):
             codename="special_status"
         )
 
+        cls.img = SimpleUploadedFile('img.jpg', b"file data")
+
         cls.comic = Comic.objects.create(
             title="One Piece",
             author="Eiichiro Oda",
+            cover=cls.img
         )
 
         cls.review = Review.objects.create(
