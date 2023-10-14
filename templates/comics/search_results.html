@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    {% for comic in comic_list %}
+        <div>
+            <h3><a href="{{ comic.get_absolute_url }}">{{ comic.title }}</a></h3>
+            <p>Author: {{ comic.author }}</p>
+            <!-- <p>Price: {{ comic.price }}</p> -->
+        </div>
+    {% endfor %}
+{% endblock content %}

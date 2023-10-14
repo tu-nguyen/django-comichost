@@ -1,0 +1,11 @@
+{% extends "_base.html" %}
+
+{% block title %}Comics{% endblock title %}
+
+{% block content %}
+  {% for chapter in chapter_list %}
+    <div>
+      <h2><a href="{{ chapter.get_first_page_absolute_url }}">chapter {{ chapter.chapter }} | {{ chapter.comic.title }}- by {{ chapter.comic.author }}</a></h2>
+    </div>
+  {% endfor %}
+{% endblock content %}

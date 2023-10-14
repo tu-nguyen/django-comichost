@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %}Comics{% endblock title %}
+
+{% block content %}
+  {% for comic in comic_list %}
+    <div>
+      <h2><a href="{{ comic.get_absolute_url }}">{{ comic.title }} - by {{ comic.author }} </a></h2>
+    </div>
+  {% endfor %}
+{% endblock content %}

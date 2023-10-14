@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+
+{% block title %}{{ comic.title }}{% endblock title %}
+
+{% block content %}
+  <div class="comic-detail">
+    {% if comic.cover %}
+      <img class="comiccover" src="{{ comic.cover.url }}" alt="{{ comic.title }}">
+    {% endif %}
+    <h2><a href="{{ comic.get_chapters_absolute_url }}">{{ comic.title }}</a></h2>
+    <p>Author: {{ comic.author }}</p>
+    <p>Uploader: {{ comic.uploader }}</p>
+    <div>
+      <h3>Reviews</h3>
+      <ul>
+        {% for review in comic.reviews.all %}
+        <li>"{{ review.review }}" written by {{ review.author }} </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock content %}

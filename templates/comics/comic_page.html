@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+
+{% block title %}Chapter {{ chapter }}{% endblock title %}
+
+{% block content %}
+<div>
+    <div class="center">
+        <ul>
+            {% for page in page_list %}
+            <li>
+                <img class="pages" src="{{ page.img.url }}" alt="{{ page.page }}">
+            </li>
+            {% endfor %}
+        </ul>
+    <div>
+</div>
+    
+<div class="position-relative">
+    {% if previous_chapter %}
+        <div class="position-absolute bottom-0 start-0">
+            <a class="btn btn-primary position-relative" href="{{ previous_chapter.get_first_page_absolute_url }}"> Previous </a>
+        </div>
+    {% else %}
+    <div class="position-absolute bottom-0 start-0">
+        <a class="btn btn-secondary position-relative"> Previous </a>
+    </div>
+    {% endif %}
+
+    {% if next_chapter %}
+        <div class="position-absolute bottom-0 end-0">
+            <a class="btn btn-primary position-relative" href="{{ next_chapter.get_first_page_absolute_url }}"> Next </a>
+        </div>
+        {% else %}
+        <div class="position-absolute bottom-0 end-0">
+            <a class="btn btn-secondary position-relative"> Next </a>
+        </div>
+    {% endif %}
+</div>
+
+
+
+
+
+
+{% endblock content %}
