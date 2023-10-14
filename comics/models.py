@@ -53,6 +53,11 @@ class Comic(models.Model):
     def get_chapters_absolute_url(self):
         return reverse("chapter_list", args=[str(self.id)])
     
+    def get_static_cover(self):
+        filename = os.path.basename(self.cover.url)
+        static_image_dir = "images/"
+        return os.path.join(static_image_dir, filename)
+    
     
 
 
@@ -109,6 +114,11 @@ class ComicPage(models.Model):
     def get_absolute_url(self):
         return reverse("page_detail", args=[str(self.chapter.comic.id), str(self.chapter.chapter), str(self.page)])
 
+    
+    def get_static_page(self):
+        filename = os.path.basename(self.img.url)
+        static_image_dir = "images/"
+        return os.path.join(static_image_dir, filename)
     
 
 class Review(models.Model):
