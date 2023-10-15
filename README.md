@@ -1,6 +1,6 @@
 # django-comichost
 
-Simple comic hosting site written in Python/Django/Docker/PostgreSQL featuring user registration, user authentication, search, image uploads, and admin panel.
+Comic hosting site using Python, Django, Docker, and PostgreSQL featuring user registration, user authentication, search, image uploads, and admin panel.
 
 
 ## Table of Contents
