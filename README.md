@@ -26,6 +26,11 @@ A small functional comic hosting application built using Django. Users can creat
 5. Deployed via [Heroku](https://dashboard.heroku.com)
 
 
+## Local run
+
+[click here](local_instruction.md) to view steps to run test enviroment locally
+
+
 ## Note
 
 Some things to note about the deployment, apparently Heroku's heroku-postgresql:hobby-dev is no more :( , so obviously after these screenshots below I'll probably shut it down.
