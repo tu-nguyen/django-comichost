@@ -21,18 +21,20 @@ def create_comic_contents(self, comic, chapter_pages, dummy_pages):
                 title=chapter_data["title"],
                 comic=comic,
             )
-            self.stdout.write(
-                self.style.SUCCESS(f"Dummy Chapter {chapter} created for {comic.title}")
-            )
+            if self:
+                self.stdout.write(
+                    self.style.SUCCESS(f"Dummy Chapter {chapter} created for {comic.title}")
+                )
 
         else:
             comic_chapter = ComicChapter.objects.get(
                 chapter=chapter,
                 comic=comic,
             )
-            self.stdout.write(
-                self.style.SUCCESS(f"Dummy Chapter {chapter} for {comic.title} already exists")
-            )
+            if self:
+                self.stdout.write(
+                    self.style.SUCCESS(f"Dummy Chapter {chapter} for {comic.title} already exists")
+                )
 
         for i in range(1, chapter_data["pages"] + 1, 1):
             if not ComicPage.objects.filter(page=i, chapter=comic_chapter).exists():
@@ -47,9 +49,10 @@ def create_comic_contents(self, comic, chapter_pages, dummy_pages):
                     chapter=comic_chapter,
                     page=i,
                 )
-                self.stdout.write(
-                    self.style.SUCCESS(f"Dummy Page created {i} for {comic.title}'s chapter {comic_chapter}")
-                )
+                if self:
+                    self.stdout.write(
+                        self.style.SUCCESS(f"Dummy Page created {i} for {comic.title}'s chapter {comic_chapter}")
+                    )
 
                 with open(f"/tmp/{comic.title.replace(' ', '-')}-{comic_chapter.chapter}-{i}.jpg", "wb") as f:
                     f.write(image_data)
@@ -67,9 +70,10 @@ def generate_reviews(self, comic, review_list):
                 author=review_dict["author"],
                 review=review_dict["review"],
             )
-        self.stdout.write(
-            self.style.SUCCESS(f"Review created for {comic.title} with author {review_dict['author']}")
-        )
+        if self:
+            self.stdout.write(
+                self.style.SUCCESS(f"Review created for {comic.title} with author {review_dict['author']}")
+            )
 
 
 class Command(BaseCommand):
@@ -146,6 +150,10 @@ class Command(BaseCommand):
             )
 
         self.stdout.write(
+            self.style.SUCCESS("Backfilling Dummy Users Completed!")
+        )
+
+        self.stdout.write(
             self.style.NOTICE("Backfilling Dummy Comics")
         )
 
@@ -187,6 +195,10 @@ class Command(BaseCommand):
         )
 
         self.stdout.write(
+            self.style.SUCCESS("Backfilling Dummy Comics Completed!")
+        )
+
+        self.stdout.write(
             self.style.NOTICE("Backfilling Dummy Chapters and Pages")
         )
         # page1 = Image.open(os.path.join(dirname, '../../../static\images\\1.jpg'))
@@ -225,6 +237,10 @@ class Command(BaseCommand):
         create_comic_contents(self, hero_aka_comic, hero_aka_chapter_page_dict, dummy_pages)
 
         self.stdout.write(
+            self.style.SUCCESS("Backfilling Dummy Chapters and Pages Completed!")
+        )
+
+        self.stdout.write(
             self.style.NOTICE("Backfilling Dummy Reviews")
         )
 
@@ -258,6 +274,10 @@ class Command(BaseCommand):
 
         for comic, comic_review in review_dict.items():
             generate_reviews(self, comic, comic_review)
+
+        self.stdout.write(
+            self.style.SUCCESS("Backfilling Dummy Reviews Completed!")
+        )
 
         self.stdout.write(
             self.style.HTTP_INFO("Project is ready, please runserver and use the below credentials to login\n")

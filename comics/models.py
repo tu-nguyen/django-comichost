@@ -33,6 +33,7 @@ class Comic(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         indexes = [
@@ -70,6 +71,7 @@ class ComicChapter(models.Model):
         on_delete=models.CASCADE,
         related_name="pages",
     )
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         indexes = [
@@ -103,6 +105,7 @@ class ComicPage(models.Model):
         related_name="chapters",
     )
     img = models.ImageField(upload_to=generate_comic_path, blank=True)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         indexes = [
@@ -133,6 +136,7 @@ class Review(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return self.review
