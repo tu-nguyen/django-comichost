@@ -57,7 +57,7 @@ def create_comic_contents(self, comic, chapter_pages, dummy_pages):
                 reopen = open(f"/tmp/{comic.title.replace(' ', '-')}-{comic_chapter.chapter}-{i}.jpg", "rb")
                 django_file = File(reopen)
 
-                page.img.save(f"/tmp/{comic.title.replace(' ', '-')}-{comic_chapter.chapter}-{i}.jpg", django_file, save=True)
+                page.img.save(f"{i}.jpg", django_file, save=True)
 
 
 def generate_reviews(self, comic, review_list):
